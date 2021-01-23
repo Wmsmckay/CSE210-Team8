@@ -21,8 +21,8 @@ click the "run" icon.
 The project files and folders are organized as follows:
 ```
 root                    (project root folder)
-+-- hunter              (source code for game)
-  +-- game              (specific game classes)
++-- jumper              (source code for game)
+  +-- gameParachute     (specific game classes)
   +-- __init__.py       (python package file)
   +-- __main__.py       (entry point for program)
 +-- README.md           (general info)
@@ -34,4 +34,4 @@ root                    (project root folder)
 
 ## Authors
 ---
-* TODO: Add your names and emails here
+* TODO: John Stavast, stavastjohn@gmail.com
