@@ -1,5 +1,6 @@
 from game.draw import Draw
 from game.guess import Guess
+from game.console import Console
 
 class Director:
     """
@@ -12,10 +13,10 @@ class Director:
     Attributes:
         draw (Draw): An instance of the class of objects knows as Draw.
         guess (Guess): An instance of the class of objects known as Guess.
+        console (Console): An instance of the class of object known as Console.
         keep_playing (boolean): Whether or not the game can continue.
         round (integer): A count for how many rounds of the game are played
         goodGuess (boolean): Whether the guess was good or not.
-
     """
 
 
@@ -30,6 +31,7 @@ class Director:
 
         self.draw = Draw()
         self.guess = Guess()
+        self.console = Console()
         self.keep_playing = True
         self.round = 4
         self.goodGuess = False
@@ -46,6 +48,8 @@ class Director:
             self.get_inputs()
             self.do_updates()
 
+        print(self.guess.word)
+        self.console.lostGame()
         self.draw.deadJumper()
            
 
@@ -79,11 +83,13 @@ class Director:
         Updates the important game information for each round of play.
         This means that a line of the parachute will either be removed or not.
         It also if the game has been won or not.
-        
+
         Args:
             self (Director): An instance of Director.
         """
         if self.guess.winCondition():
+            print(self.guess.word)
+            self.console.celebrate()
             exit()
         self.draw.updateJumper(self.goodGuess)
         self.goodGuess == False

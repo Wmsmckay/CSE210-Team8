@@ -86,7 +86,7 @@ class Guess:
 
     def winCondition(self):
         """
-        Determines if the user has won the game or not.
+        Determines if the user has won the game.
 
         Args:
             self (Guess): an instance of Guess.
@@ -95,5 +95,4 @@ class Guess:
         for char in self.letterIndex:
             currentGuess = currentGuess + char
         if currentGuess == self.word:
-            print("You Win!!")
             return True
