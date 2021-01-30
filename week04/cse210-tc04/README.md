@@ -34,4 +34,5 @@ root                    (project root folder)
 
 ## Authors
 ---
-* # TODO: Add your names and emails here
+McKay Williams (wil16182@byui.edu)
+John Stavast (sta03008@byui.edu)
