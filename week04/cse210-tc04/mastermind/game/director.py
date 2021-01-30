@@ -1,6 +1,6 @@
 from game.board import Board
 from game.console import Console
-from game.move import Move
+from game.guess import Guess
 from game.player import Player
 from game.roster import Roster
 
@@ -28,7 +28,7 @@ class Director:
         self._board = Board()
         self._console = Console()
         self._keep_playing = True
-        self._move = None
+        self._guess = None
         self._roster = Roster()
         
     def start_game(self):
@@ -68,11 +68,11 @@ class Director:
         player = self._roster.get_current()
         self._console.write(f"{player.get_name()}'s turn:")
         # player is asked to guess a 4 digit number
-        guess = self._console.read_number("What is your guess? ")
-        # call move() and set guess instantiate value into the move class
-        move = Move(guess)
-        # instantiate value of the move to the current player
-        player.set_move(move)
+        playerGuess = self._console.read_number("What is your guess? ")
+        # call guess() and set playerGuess value into the guess class
+        guess = Guess(guess)
+        # instantiate value of the guess to the current player
+        player.set_guess(guess)
 
     def _do_updates(self):
         """Updates the important game information for each round of play. In 
@@ -84,9 +84,9 @@ class Director:
         # gets current player
         player = self._roster.get_current()
         # places current player's guess into variable move
-        move = self._move.get_move()
+        guess = self._guess.get_guess()
         # calls apply method in board and does needed updates with the current user's guess
-        self._board.apply(move)
+        self._board.apply(guess)
  
     def _do_outputs(self):
         """Outputs the important game information for each round of play. In 
@@ -96,7 +96,7 @@ class Director:
             self (Director): An instance of Director.
         """
         # check the value of the current guess with the random number prepared in board
-        if self._move._guess == self._board._guess:
+        if self._guess._guess == self._board._guess:
             # get current player
             player = self._roster.get_current()
             # write winning statement with current player's name
