@@ -7,10 +7,10 @@ class Board:
     how much of their guess is right.
     """
 
-    def __init__(self, player1, player2):
-        self._prepare(player1)
-        self._prepare(player2)
-        self.items = []
+    def __init__(self):
+        #self._prepare(player1)
+        #self._prepare(player2)
+        self.items = {}
 
     def _prepare(self, player):
         """
@@ -19,6 +19,7 @@ class Board:
         Args:
             self (Board): an instance of Board.
         """
+
         name = player.get_name()
         code = str(random.randint(1000, 10000))
         guess = "----"
@@ -26,39 +27,57 @@ class Board:
         self.items[name] = [code, guess, hint]
 
     def _create_hint(self, code, guess):
-    """Generates a hint based on the given code and guess.
+        """Generates a hint based on the given code and guess.
 
-    Args:
-        self (Board): An instance of Board.
-        code (string): The code to compare with.
-        guess (string): The guess that was made.
+        Args:
+            self (Board): An instance of Board.
+            code (string): The code to compare with.
+            guess (string): The guess that was made.
 
-    Returns:
-        string: A hint in the form [xxxx]
-    """
+        Returns:
+            string: A hint in the form [xxxx]
+        """
+        guess = str(guess)
+        hint = ""
+        for index, letter in enumerate(guess):
+            if code[index] == letter:
+                hint += "x"
+            elif letter in code:
+                hint += "o"
+            else:
+                hint += "*"
+        return hint
 
-    hint = ""
-    for index, letter in enumerate(guess):
-        if code[index] == letter:
-            hint += "x"
-        elif letter in code:
-            hint += "o"
-        else:
-            hint += "*"
-    return hint
+    def winCondition(self, player):
+        name = player.get_name()
+        code = self.items[name][0]
+        guess = self.items[name][1]
+        if int(code) == guess:
+            
+            print("\n--------------------")
+            for player in self.items:
+                print("Player " + player + ": " + str(self.items[player][1])
+                + ", Correct Answer: " + str(self.items[player][0]) )
+            print("--------------------\n")
 
-    def _winCondition(self, code, guess):
-        if code = guess:
+
+            print(name + " won!")
+            exit()
+        return True
+        
 
     def update_board(self, player):
         name = player.get_name()
         code = self.items[name][0]
-        guess = self.items[name][1]
-        self.items[name][2] = _create_hint(code, guess)
+        guess = player.get_guess()
+        self.items[name][1] = guess
+        # guess =self.items[name][1]
+        self.items[name][2] = self._create_hint(code, guess)
 
-    def display_board(self, player1, player2):
-        print("--------------------")
-        for player in items:
-        print("Player " + player + ": " + [player][1] 
-            + ", " + [player][2])
-        print("--------------------")
+    def display_board(self):
+        print("\n--------------------")
+        for player in self.items:
+            print("Player " + player + ": " + str(self.items[player][1]) 
+                + ", " + str(self.items[player][2]))
+        print("--------------------\n")
+        

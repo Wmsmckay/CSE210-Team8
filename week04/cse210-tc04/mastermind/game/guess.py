@@ -18,9 +18,12 @@ class Guess:
         """
         self._guess = guess
 
-    def get_pile(self):
+    def get_guess(self):
         """returns the player's guess
         Args:
             self (Guess): an instance of Guess.
         """
         return self._guess
+
+    def set_guess(self, guess):
+        self._guess = guess

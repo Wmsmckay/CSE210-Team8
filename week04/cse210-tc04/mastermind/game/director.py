@@ -53,6 +53,8 @@ class Director:
             name = self._console.read(f"Enter a name for player {n + 1}: ")
             player = Player(name)
             self._roster.add_player(player)
+            self._board._prepare(player)
+        
     
     def _get_inputs(self):
         """Gets the inputs at the beginning of each round of play. In this case,
@@ -62,17 +64,18 @@ class Director:
             self (Director): An instance of Director.
         """
         # display the game board
-        board = self._board.to_string()
-        self._console.write(board)
+        #board = self._board
+        self._board.display_board()
         # get next play and their guess
         player = self._roster.get_current()
         self._console.write(f"{player.get_name()}'s turn:")
         # player is asked to guess a 4 digit number
         playerGuess = self._console.read_number("What is your guess? ")
         # call guess() and set playerGuess value into the guess class
-        guess = Guess(guess)
+        self._guess = Guess(playerGuess)
         # instantiate value of the guess to the current player
-        player.set_guess(guess)
+        #self._guess = Guessset_guess(guess)
+        player.set_guess(self._guess.get_guess())
 
     def _do_updates(self):
         """Updates the important game information for each round of play. In 
@@ -86,7 +89,7 @@ class Director:
         # places current player's guess into variable move
         guess = self._guess.get_guess()
         # calls apply method in board and does needed updates with the current user's guess
-        self._board.apply(guess)
+        self._board.update_board(player)
  
     def _do_outputs(self):
         """Outputs the important game information for each round of play. In 
@@ -95,14 +98,18 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
+
+        # print out the current state of the board
+        # self._board.display_board()
         # check the value of the current guess with the random number prepared in board
-        if self._guess._guess == self._board._guess:
-            # get current player
-            player = self._roster.get_current()
-            # write winning statement with current player's name
-            self._console.write(player + ' won!')
-            # end game 
-            self._keep_playing = False
+        self._keep_playing = self._board.winCondition(self._roster.get_current())
+        # if self._guess._guess == self._board._guess:
+        #     # get current player
+        #     player = self._roster.get_current()
+        #     # write winning statement with current player's name
+        #     self._console.write(player + ' won!')
+        #     # end game 
+        #     self._keep_playing = False
         # changes the player for the next round of the game
         self._roster.next_player()
 

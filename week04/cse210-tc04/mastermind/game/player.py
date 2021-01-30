@@ -18,6 +18,7 @@ class Player:
         self._name = name
         self._guess = None
         
+        
     def get_guess(self):
         """Returns the player's last guess (an instance of Guess). If the player 
         hasn't guessed yet this method returns None.
