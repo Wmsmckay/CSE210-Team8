@@ -8,8 +8,9 @@ class Board:
     """
 
     def __init__(self):
-        #self._prepare(player1)
-        #self._prepare(player2)
+        """
+        This initiates the board with a for the players.
+        """
         self.items = {}
 
     def _prepare(self, player):
@@ -37,6 +38,7 @@ class Board:
         Returns:
             string: A hint in the form [xxxx]
         """
+
         guess = str(guess)
         hint = ""
         for index, letter in enumerate(guess):
@@ -53,31 +55,38 @@ class Board:
         code = self.items[name][0]
         guess = self.items[name][1]
         if int(code) == guess:
-            
             print("\n--------------------")
             for player in self.items:
                 print("Player " + player + ": " + str(self.items[player][1])
                 + ", Correct Answer: " + str(self.items[player][0]) )
             print("--------------------\n")
-
-
             print(name + " won!")
             exit()
         return True
         
 
     def update_board(self, player):
+        """
+        This method updates the board to save the current game state
+
+        Args:
+            self: an instance of Board.
+            player: the current player.
+        """
+
         name = player.get_name()
         code = self.items[name][0]
         guess = player.get_guess()
         self.items[name][1] = guess
-        # guess =self.items[name][1]
         self.items[name][2] = self._create_hint(code, guess)
 
     def display_board(self):
-        print("\n--------------------")
+        """
+        The job of this method is to get the board details and return them to be formatted and printed out.
+        """
+
+        boardStr = ""
         for player in self.items:
-            print("Player " + player + ": " + str(self.items[player][1]) 
-                + ", " + str(self.items[player][2]))
-        print("--------------------\n")
-        
+            boardStr += ("Player " + player + ": " + str(self.items[player][1]) 
+                + ", " + str(self.items[player][2]) + "\n")
+        return boardStr
