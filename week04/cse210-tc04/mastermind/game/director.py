@@ -12,10 +12,10 @@ class Director:
         Controller
 
     Attributes:
-        board (Hunter): An instance of the class of objects known as Board.
+        board (Board): An instance of the class of objects known as Board.
         console (Console): An instance of the class of objects known as Console.
         keep_playing (boolean): Whether or not the game can continue.
-        move (Rabbit): An instance of the class of objects known as Move.
+        guess (Guess): An instance of the class of objects known as Guess.
         roster (Roster): An instance of the class of objects known as Roster.
     """
 
