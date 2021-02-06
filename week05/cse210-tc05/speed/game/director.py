@@ -52,12 +52,6 @@ class Director:
             sleep(constants.FRAME_LENGTH)
 
 
-
-
-
-
-
-
     def _get_inputs(self):
         """Gets the inputs at the beginning of each round of play. In this case,
         that means getting the user's input for what letters are typed.
@@ -66,30 +60,42 @@ class Director:
             self (Director): An instance of Director.
         """
 
-        self.buffer = self._input_service.get_letter()
+        self.buffer += self._input_service.get_letter()
 
     def _do_updates(self):
         """Updates the important game information for each round of play. In 
-        this case, that means checking for a collision and updating the score.
+        this case, that means checking when the user has finished typing a word 
+        and checking if that word is in the word list. It also means moving the 
+        words down the screen for the user to type out..
 
-        that means checking when the user has finished typing a word and checking 
-        if that word is in the word list. It also means moving the words down the
-        screen for the user to type out.
+        
 
 
         Args:
             self (Director): An instance of Director.
         """
-        # check to see if the level has been completed
-        if self._score.ifCorrect(self._word.get_words, self.buffer):
-            self._score.update_score()
-            self._word.remove_word(self.buffer)
 
+        # check to see that words array is empty and
+        # update the level
+        self._word.set_difficulty(self.current_level)
+        
+        # if self._word.get_words() < 1:
+        #     self.current_level += 1
+        #     self._level.set_level(self.current_level)
+        #     self._word.set_level(self.current_level)
+        #     if self.current_level > 1:
+        #         self._word.newList()
+
+
+        # check to see if the user input was correct and update the word list
+        self._word.updateList(self._score.ifCorrect(self._word.get_words(), self.buffer))
+        
+            
         # Check to see if buffer has been cleared
         if '*' in self.buffer:
             self.buffer = ''
 
-        self._handle_word_velocity()
+        #self._handle_word_velocity()
         
 
 
@@ -98,20 +104,18 @@ class Director:
         
     def _do_outputs(self):
         """Outputs the important game information for each round of play. In 
-        this case, that means checking if there are stones left and declaring 
-        the winner.
+        this case, that means checking if the user has typed a complete word 
+        and awarding points for it. It also checks to see if the user has 
+        used up all of their chances for playing. If not, it advances them to 
+        the next level.
 
-
-        that means checking if the user has typed a complete word and awarding
-        points for it. It also checks to see if the user has used up all of their
-        chances for playing. If not, it advances them to the next level.
 
         Args:
             self (Director): An instance of Director.
         """
 
         
-
+        
         # check to see how many lives are left
         if self.lives < 1:
             print('Game Over')
@@ -120,12 +124,12 @@ class Director:
         # update the current level
         self.current_level = self._level.get_level()
         # clear the screen buffer
-        self._output_service.clear_screen()
+        self._output_service.clear_screen(self.current_level)
 
         # draw all of the words
-        self._output_service.draw_actor(self._word.get_words)
+        self._output_service.draw_actors(self._word.get_words())
         # draw the buffer
-        self._output_service.draw_actor(self.buffer)
+        self._output_service.draw_buffer(self.buffer)
         # refresh the screen
         self._output_service.flush_buffer()
         
@@ -144,12 +148,17 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        head = self._snake.get_head()
-        body = self._snake.get_body()
-        for segment in body:
-            if head.get_position().equals(segment.get_position()):
-                self._keep_playing = False
-                break
+        pass
+
+
+
+
+        # head = self._snake.get_head()
+        # body = self._snake.get_body()
+        # for segment in body:
+        #     if head.get_position().equals(segment.get_position()):
+        #         self._keep_playing = False
+        #         break
 
     def _handle_food_collision(self):
         """Handles collisions between the snake's head and the food. Grows the 
@@ -157,11 +166,12 @@ class Director:
 
         Args:
             self (Director): An instance of Director.
-        """
-        head = self._snake.get_head()
-        if head.get_position().equals(self._food.get_position()):
-            points = self._food.get_points()
-            for n in range(points):
-                self._snake.grow_tail()
-            self._score.add_points(points)
-            self._food.reset() 
+        # """
+        pass
+        # head = self._snake.get_head()
+        # if head.get_position().equals(self._food.get_position()):
+        #     points = self._food.get_points()
+        #     for n in range(points):
+        #         self._snake.grow_tail()
+        #     self._score.add_points(points)
+        #     self._food.reset() 
