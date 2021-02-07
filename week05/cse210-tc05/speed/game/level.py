@@ -36,20 +36,6 @@ class Level:
 
         RETURNS: An integer. The player's level.
         """
-        i = self.level
-        while i < 8:
-            if self.score > i * 15:
-                self.level = i + 1
-                self.set_word_length()
-                self.set_word_count()
-                self.get_velocity()
-                i += 1
-            elif i == 8:
-                """
-                HOW DO WE END THE GAME WHEN THEY WIN????
-                """
-            else:
-                break
         return self.level
 
     def set_word_length(self):
@@ -84,3 +70,12 @@ class Level:
         """
         self.velocity += 1
         return self.velocity
+
+    def set_level(self, newLevel):
+        """
+        (SETTER) Sets the level
+
+        ARGS: Level (self) an instance of  Level
+
+        """
+        self.level = newLevel

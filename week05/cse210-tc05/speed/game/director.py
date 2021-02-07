@@ -4,6 +4,7 @@ from game.word import Word
 from game.score import Score
 from game.level import Level
 
+
 class Director:
     """A code template for a person who directs the game. The responsibility of 
     this class of objects is to control the sequence of play.
@@ -25,7 +26,7 @@ class Director:
         The class constructor.
 
         Args:
-            sefl (Directory): and instance of Director.
+            self (Directory): and instance of Director
             input_service (Input_service): an instacne of the input service.
             output_service (Output_service): and instance of the output_serivce.
         """
@@ -37,7 +38,6 @@ class Director:
         self._word = Word()
         self.buffer = ''
         self.current_level = 1
-        self.lives = 5
 
     def start_game(self):
         """Starts the game loop to control the sequence of play.
@@ -45,6 +45,7 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
+        self._word.newList()
         while self._keep_playing:
             self._get_inputs()
             self._do_updates()
@@ -66,41 +67,27 @@ class Director:
         """Updates the important game information for each round of play. In 
         this case, that means checking when the user has finished typing a word 
         and checking if that word is in the word list. It also means moving the 
-        words down the screen for the user to type out..
-
-        
-
+        words down the screen for the user to type out.
 
         Args:
             self (Director): An instance of Director.
         """
-
-        # check to see that words array is empty and
-        # update the level
-        self._word.set_difficulty(self.current_level)
-        
-        # if self._word.get_words() < 1:
-        #     self.current_level += 1
-        #     self._level.set_level(self.current_level)
-        #     self._word.set_level(self.current_level)
-        #     if self.current_level > 1:
-        #         self._word.newList()
-
-
-        # check to see if the user input was correct and update the word list
+        self.current_level = self._level.get_level()
+        if len(self._word.get_words()) < 1:
+            newLevel = self._level.get_level() + 1
+            self.current_level = newLevel
+            self._level.set_level(self.current_level)
+            self._word.newList()
+            self._word.set_difficulty(self.current_level)
         self._word.updateList(self._score.ifCorrect(self._word.get_words(), self.buffer))
         
-            
+        self._word.updateList(self._score.missed(self._word.get_words()))
+                    
         # Check to see if buffer has been cleared
         if '*' in self.buffer:
             self.buffer = ''
 
-        #self._handle_word_velocity()
-        
-
-
-        #self._handle_body_collision()
-        #self._handle_food_collision()
+        self._handle_word_velocity()
         
     def _do_outputs(self):
         """Outputs the important game information for each round of play. In 
@@ -113,65 +100,25 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-
         
-        
-        # check to see how many lives are left
-        if self.lives < 1:
-            print('Game Over')
-            exit()
-
-        # update the current level
-        self.current_level = self._level.get_level()
         # clear the screen buffer
         self._output_service.clear_screen(self.current_level)
-
         # draw all of the words
         self._output_service.draw_actors(self._word.get_words())
+        # draw score
+        self._output_service.draw_score(self._score.get_score())
         # draw the buffer
         self._output_service.draw_buffer(self.buffer)
         # refresh the screen
         self._output_service.flush_buffer()
         
-
-
-
-
-
-
-
-
     def _handle_word_velocity(self):
-        """Handles collisions between the snake's head and body. Stops the game 
-        if there is one.
+        """Handles the velocity of the word
 
         Args:
             self (Director): An instance of Director.
         """
-        pass
-
-
-
-
-        # head = self._snake.get_head()
-        # body = self._snake.get_body()
-        # for segment in body:
-        #     if head.get_position().equals(segment.get_position()):
-        #         self._keep_playing = False
-        #         break
-
-    def _handle_food_collision(self):
-        """Handles collisions between the snake's head and the food. Grows the 
-        snake, updates the score and moves the food if there is one.
-
-        Args:
-            self (Director): An instance of Director.
-        # """
-        pass
-        # head = self._snake.get_head()
-        # if head.get_position().equals(self._food.get_position()):
-        #     points = self._food.get_points()
-        #     for n in range(points):
-        #         self._snake.grow_tail()
-        #     self._score.add_points(points)
-        #     self._food.reset() 
+        newList = self._word.get_words()
+        for key, coords in newList.items():
+            coords[1] += .05
+        self._word.updateList(newList)

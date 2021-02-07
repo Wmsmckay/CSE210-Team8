@@ -4,12 +4,25 @@ from game.actor import Actor
 from game.coordinate import Coordinates
 
 class Word(Actor):
+    """
+    This class handles the words for the game. It creates a list for every level
+    and updates it as the player types them or they lose them. It also inherits from
+    the Actor class.
+
+    Stereotype:
+        service provider.
+        
+    Args:
+        Actor (Actor): inheritance from the actor class
+    """
+
     def __init__(self):
         super().__init__()
         self._wordlist = []
         self._points = 0
         self._gameWords = {}
-        self._level_difficulty = 0
+        self._level_difficulty = 1
+        self._coordinates = Coordinates()
         
         
     def newList(self):
@@ -20,32 +33,26 @@ class Word(Actor):
 
         RETURNS: A list 
         """
-        readinFile = open('speed/game/words.txt','r')
-
-        for word in readinFile.read().split():
+            
+        for word in constants.LIBRARY:
             self._wordlist.append(word)
-        
+
+            
         while len(self._gameWords) < 5:
             numberWord = random.randint(0,9999)
-            if len(self._wordlist[numberWord]) == self._level_difficulty + 4:
-                #self._gameWords.append(self._wordlist[numberWord])
+            if len(self._wordlist[numberWord]) == self._level_difficulty + 2:
+
                 x = random.randint(1, constants.MAX_X - self._level_difficulty)
                 y = random.randint(1, constants.MAX_Y - self._level_difficulty)
-                position = Coordinates(x, y)
-
-                # set the word's position in the actor
-                #self.set_position(position)
-
-                # Add the word to the dictionary
-                self._gameWords.append(self._wordlist[numberWord])
-                # add the position of the word to it's entry in the dictionary
-                self._gameWords[self._wordlist[numberWord].append(position)]
-                #self._gameWords[self._wordlist[numberWord]].set_text(self._wordlist[numberWord])
-                # What is this?
-                # self._gameWords = self._wordlist[numberWord]
+                self._coordinates.set_x(x)
+                self._coordinates.set_y(y)
+                position = [self._coordinates.get_x(), self._coordinates.get_y()]
         
+                # Add the position and word to the dictionary
+                self._gameWords.update({self._wordlist[numberWord] : position})
         
         return self._gameWords
+
 
 
     def get_words(self):
@@ -67,7 +74,15 @@ class Word(Actor):
 
         RETURNS: An integer
         """
-        self.level_difficulty = current_level
+        self._level_difficulty = current_level
 
     def updateList(self, newList):
+        """
+        This updates the list when events changes the words inside.
+
+        Args:
+            Word (self): an instance of word.
+            newList (list): a list of words.
+        """
+
         self._gameWords = newList

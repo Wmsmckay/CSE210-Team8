@@ -18,15 +18,14 @@ class Actor:
 
         ARGS: Actor (self) and instance of Actor
         """
-
         self._text = " " # The variable for the word to move on the screen
-        self._position = Coordinates(0, 0)
-        self._velocity = Coordinates(0, 0)
+        self._position = Coordinates()
+        self._velocity = Coordinates()
         self._level = 0
 
     def get_position(self):
         """
-        (GETTER) Gets the actors position variable and stores it in the self._position variable.
+        (GETTER) Gets the actors position variable
 
         ARGS: Actor (self) an instance of Actor
 
@@ -36,17 +35,17 @@ class Actor:
 
     def get_velocity(self):
         """
-        (GETTER) Gets the actors velocity variable and stores it in the self._velocity variable.
+        (GETTER) Gets the actors velocity variable
 
         ARGS: Actor (self) an instance of Actor
 
-        RETURNS: A point. This represents the actor's speed and direction.
+        RETURNS: A point. This represents the actor's speed
         """
         return self._velocity
 
     def get_text(self):
         """
-        (GETTER) Gets the text variable that will represent the actor and stores it in the self._velocity variable.
+        (GETTER) Gets the text variable that will represent the actor
 
         ARGS: Actor (self) an instance of Actor
 
@@ -56,7 +55,7 @@ class Actor:
 
     def get_level(self):
         """
-        (GETTER) Gets the players level variable and stores it in the self._level variable.
+        (GETTER) Gets the players level variable
 
         ARGS: Actor (self) an instance of Actor
 
@@ -79,18 +78,18 @@ class Actor:
         position = Coordinates(x, y)
         self._position = position
 
-    def check_at_bottom(self, lives):
-        """
-        Checks to see if the word has reached the bottom of the screen. Deletes a life if it reaches the bottom.
+    # def check_at_bottom(self, lives):
+    #     """
+    #     Checks to see if the word has reached the bottom of the screen. Deletes a life if it reaches the bottom.
 
-        ARGS: Actor (self) an instance of Actor
-              lives: the lives the player has
+    #     ARGS: Actor (self) an instance of Actor
+    #           lives: the lives the player has
 
-        RETURNS: An integer. The lives the player has left.
-        """        
-        if y == 0:
-            lives = lives - 1
-        return lives
+    #     RETURNS: An integer. The lives the player has left.
+    #     """        
+    #     if y == 0:
+    #         lives = lives - 1
+    #     return lives
 
     def set_position(self, position):
         """
@@ -134,5 +133,4 @@ class Actor:
 
         RETURNS: An integer. The player's level
         """
-        
         self._level = level

@@ -1,6 +1,6 @@
 class Coordinates:
     """
-    Controls the flow of information of coordinants
+    Controls the flow of information of coordinates
 
     Stereotype:
         Information Holder
@@ -10,7 +10,7 @@ class Coordinates:
         _y (Point): The vertical distance.
     """
 
-    def __init__(self, x, y):
+    def __init__(self):
         """The class constructor.
         
         Args:
@@ -18,8 +18,8 @@ class Coordinates:
             x (integer): A horizontal distance.
             y (integer): A vertical distance.
         """
-        self._x = x
-        self._y = y
+        self._x = 0
+        self._y = 0
 
     def get_x(self):
         """Gets the horizontal distance.

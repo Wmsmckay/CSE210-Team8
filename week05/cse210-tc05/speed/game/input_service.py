@@ -2,7 +2,7 @@ import sys
 from asciimatics.event import KeyboardEvent
 
 class InputService:
-    """Detects player input. The responsibility of the class of objects is to detect player keypresses and translate them into a point representing a direction (or velocity).
+    """Detects player input. The responsibility of the class of objects is to detect player key presses and translate them into a point representing a direction (or velocity).
 
     Stereotype: 
         Service Provider
@@ -16,6 +16,7 @@ class InputService:
         
         Args:
             self (InputService): An instance of InputService.
+            screen (Screen): and instance of screen
         """
         self._screen = screen
         
