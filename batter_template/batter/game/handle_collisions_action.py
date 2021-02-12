@@ -20,19 +20,15 @@ class HandleCollisionsAction(Action):
         bricks = cast["brick"]
         ball = cast["ball"]
         # marquee.set_text("")
-        for brick in bricks:
-             print(brick.get_position())
-            # if ball.get_position().equals(brick.get_position()):
-            print(ball.get_position())
+        # for brick in bricks:
+        #     if ball.get_position().equals(brick.get_position()):
+        #         print(ball.get_position())
+        
+        # print(ball.get_position())
                 
-            #     velocity_get = ball.get_velocity()
-            #     x2 = velocity_get.get_x()
-            #     x2 *= -1
-            #     ball.set_velocity(x2)
-                
-                # remove this brick
-                # ball bounces back at opposite velocity (X,Y)
-                
-                # need to remove this artifact
-                # description = artifact.get_description()
-                # marquee.set_text(description) 
+        #         velocity_get = ball.get_velocity()
+        #         x2 = velocity_get.get_x()
+        #         x2 *= -1
+        #         ball.set_velocity(x2)
+        # ##### Collision with paddle
+        # when ball == paddlevelocity * -1     
