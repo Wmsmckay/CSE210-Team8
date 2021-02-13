@@ -1,4 +1,5 @@
 from time import sleep
+import msvcrt
 from game import constants
 
 class Director:

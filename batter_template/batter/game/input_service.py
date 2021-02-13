@@ -1,4 +1,5 @@
 import sys
+from time import sleep
 from game.point import Point
 from asciimatics.event import KeyboardEvent
 

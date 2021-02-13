@@ -1,3 +1,5 @@
+from game.constants import Y_VELOCITY
+from game.constants import X_VELOCITY
 import random
 from game import constants
 from game.director import Director
@@ -17,12 +19,18 @@ def main(screen):
     cast = {}
 
     x = int(constants.MAX_X / 2)
-    y = int(constants.MAX_Y - 1)
-    position = Point(x, y)
-    paddle = Actor()
-    paddle.set_text("===========")
-    paddle.set_position(position)
-    cast["paddle"] = [paddle]
+    y = int(constants.MAX_Y - 2)
+    # position = Point(x, y)
+    # paddle = Actor()
+    # paddle.set_text("===========")
+    # paddle.set_position(position)
+    cast["paddle"] = []
+    for x in range(34, 46):
+            position = Point(x, y)
+            paddle = Actor()
+            paddle.set_text("_")
+            paddle.set_position(position)
+            cast["paddle"].append(paddle)
 
     cast["brick"] = []
     for x in range(5, 75):
@@ -33,10 +41,10 @@ def main(screen):
             brick.set_position(position)
             cast["brick"].append(brick)
 
-    x = int(constants.MAX_X / 2)
+    x = int(constants.MAX_X / 3)
     y = int(constants.MAX_Y / 2)
     position = Point(x, y)
-    velocity = Point(2, -1)
+    velocity = Point(X_VELOCITY, Y_VELOCITY)
     ball = Actor()
     ball.set_text("@")
     ball.set_position(position)

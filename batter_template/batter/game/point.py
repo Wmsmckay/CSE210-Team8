@@ -58,6 +58,22 @@ class Point:
             integer: The vertical distance.
         """
         return self._y
+    
+    def invert_y(self):
+        """Inverts the value of y.
+        
+        Returns:
+            integer: The vertical distance.
+        """
+        self._y *= -1    
+        
+    def invert_x(self):
+        """Inverts the value of x.
+        
+        Returns:
+            integer: The horixontal distance.
+        """
+        self._x *= -1  
 
     def is_zero(self):
         """Whether or not the point is zero or x = 0 and y = 0.
