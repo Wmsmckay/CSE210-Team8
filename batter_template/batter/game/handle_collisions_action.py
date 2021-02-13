@@ -6,14 +6,12 @@ from game.action import Action
 
 class HandleCollisionsAction(Action):
     """A code template for handling collisions. The responsibility of this class of objects is to update the game state when actors collide.
-
     Stereotype:
         Controller
     """
 
     def execute(self, cast):
         """Executes the action using the given actors.
-
         Args:
             cast (dict): The game actors {key: tag, value: list}.
         """
@@ -44,5 +42,5 @@ class HandleCollisionsAction(Action):
             ball.get_velocity().invert_y()
         # ends the game if the paddle misses the ball        
         if ball.get_position().get_y() == MAX_Y - 1:
+            print(" __                 __\n/     /\    /\/\   |_\n| _  /__\  /    \  |  \n\__//    \/      \ |__ ")
             quit()
-            
