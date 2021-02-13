@@ -39,4 +39,7 @@ root                    (project root folder)
 
 ## Authors
 ---
-* # TODO: Add your names and emails here
+* John Stavast (sta03008@byui.edu)
+* Christine Helfrinch (hel20007@byui.edu)
+* McKay Williams (wil16182@byui.edu)
+* Alex Jacobs (jac18042@byui.edu)
