@@ -7,6 +7,10 @@ class OutputService:
     
     Stereotype: 
         Service Provider
+    
+    Authors:
+        John Stavast
+        Christine Helfrinch
 
     Attributes:
         _screen (Screen): An Asciimatics screen.

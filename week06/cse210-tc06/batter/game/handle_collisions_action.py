@@ -3,12 +3,21 @@ from game.constants import MAX_Y
 import random
 from game import constants
 from game.action import Action
+from game.actor import Actor
+import math
+from game.point import Point
 
 class HandleCollisionsAction(Action):
     """A code template for handling collisions. The responsibility of this class of objects is to update the game state when actors collide.
 
     Stereotype:
         Controller
+
+    Authors:
+        John Stavast
+        Christine Helfrinch
+        McKay Williams
+
     """
 
     def execute(self, cast):
@@ -48,4 +57,3 @@ class HandleCollisionsAction(Action):
         # ends the game if the paddle misses the ball        
         if ball.get_position().get_y() == MAX_Y - 1:
             quit()
-            

@@ -4,7 +4,8 @@ class Score(Actor):
     """
     This class extends actor and updates the score for the player.
 
-    Author: McKay Williams
+    Author:
+        McKay Williams
 
     Args:
         self (score): an instance of the score class.

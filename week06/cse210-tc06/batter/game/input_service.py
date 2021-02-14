@@ -9,6 +9,10 @@ class InputService:
     Stereotype: 
         Service Provider
 
+    Authors:
+        John Stavast
+        Christine Helfrinch
+
     Attributes:
         _screen (Screen): An Asciimatics screen.
         _keys (list): Points for up, dn, lt, rt.

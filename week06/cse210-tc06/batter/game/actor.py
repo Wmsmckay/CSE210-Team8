@@ -8,6 +8,10 @@ class Actor:
     Stereotype:
         Information Holder
 
+    Authors:
+        John Stavast
+        Christine Helfrinch
+
     Attributes:
         _tag (string): The actor's tag.
         _text (string): The textual representation of the actor.

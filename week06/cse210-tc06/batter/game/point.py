@@ -4,6 +4,10 @@ class Point:
     Stereotype:
         Information Holder
 
+    Authors:
+        John Stavast
+        Christine Helfrinch
+
     Attributes:
         _x (integer): The horizontal distance.
         _y (Point): The vertical distance.

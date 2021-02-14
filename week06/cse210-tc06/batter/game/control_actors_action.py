@@ -8,6 +8,10 @@ class ControlActorsAction(Action):
     Stereotype:
         Controller
 
+    Authors:
+        John Stavast
+        Christine Helfrinch
+
     Attributes:
         _input_service (InputService): An instance of InputService.
     """

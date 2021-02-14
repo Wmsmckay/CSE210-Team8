@@ -8,6 +8,10 @@ class Director:
     
     Stereotype:
         Controller
+    
+    Authors:
+        John Stavast
+        Christine Helfrinch
 
     Attributes:
         _cast (dictionary): The game actors {key: name, value: object}

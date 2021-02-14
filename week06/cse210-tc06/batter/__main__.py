@@ -21,10 +21,7 @@ def main(screen):
 
     x = int(constants.MAX_X / 2)
     y = int(constants.MAX_Y - 2)
-    # position = Point(x, y)
-    # paddle = Actor()
-    # paddle.set_text("===========")
-    # paddle.set_position(position)
+
     cast["paddle"] = []
     for x in range(34, 46):
             position = Point(x, y)

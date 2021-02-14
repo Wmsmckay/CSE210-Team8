@@ -1,6 +1,18 @@
 from game.action import Action
 
 class DrawActorsAction():
+    """
+    This class makes sure that all actions are drawn to the screen.
+
+    Authors:
+        John Stavast
+        Christine Helfrinch
+
+    Stereotype:
+        Controller
+    
+    """
+
     def __init__(self, output_service):
         self._output_service = output_service
 
@@ -15,37 +27,3 @@ class DrawActorsAction():
         for actors in cast.values():                
             self._output_service.draw_actors(actors)
         self._output_service.flush_buffer()
-           
-           
-           
-                    
-    # def clear_screen(self):
-    #     """Clears the Asciimatics buffer for the next rendering.""" 
-    #     self._screen.clear_buffer(7, 0, 0)
-    #     self._screen.print_at("-" * constants.MAX_X, 0, 0, 7)
-    #     self._screen.print_at("-" * constants.MAX_X, 0, constants.MAX_Y, 7)
-        
-    # def draw_actor(self, actor):
-    #     """Renders the given actor's text on the screen.
-
-    #     Args:
-    #         actor (Actor): The actor to render.
-    #     """ 
-    #     text = actor.get_text()
-    #     position = actor.get_position()
-    #     x = position.get_x()
-    #     y = position.get_y()
-    #     self._screen.print_at(text, x, y, 7) # WHITE
-
-    # def draw_actors(self, actors):
-    #     """Renders the given list of actors on the screen.
-
-    #     Args:
-    #         actors (list): The actors to render.
-    #     """ 
-    #     for actor in actors:
-    #         self.draw_actor(actor)
-    
-    # def flush_buffer(self):
-    #     """Renders the screen.""" 
-    #     self._screen.refresh()    
